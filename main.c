@@ -52,3 +52,49 @@ void sortpriority(struct scheduling c[],int pro)
     }
     return;
 }
+
+void priorityy(struct scheduling c[],int u)
+{    int i,time1;
+    
+    printf("\n********************************************\n");
+    printf("  Priority Scheduling(non-premptive)   ");
+    printf("\n********************************************2\n\n");
+    
+    for(i=0;i<u;i++)
+    {
+        c[i].p = i;
+    }
+    
+    printf("Gantt Chart:\n");
+    sortarrival(c,u);
+    time1=c[0].arr;
+    int z=c[0].arr;
+    printf("%d",time1);
+    for(i=0;i<u;i++)
+    {
+        time1=time1+c[i].brt;
+        printf(" -> [P%d] <- %d",c[i].p,time1);
+        
+        break;
+    }
+    
+    
+    sortpriority(c,u);
+    
+    
+    
+    for(i=0;i<u;i++)
+    {    if(z==c[i].arr)
+    {
+        continue;
+    }
+        time1=time1+c[i].brt;
+        printf(" -> [P%d] <- %d",c[i].p,time1);
+    }
+    
+    
+}
+
+
+
+
