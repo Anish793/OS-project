@@ -97,4 +97,26 @@ void priorityy(struct scheduling c[],int u)
 
 
 
+void fcfs(struct scheduling b[],int k)
+{
+    
+    int i,time;
+    printf("\n***************************************\n");
+    printf("           First Come First Serve        ");
+    printf("\n***************************************\n\n");
+    for(i=0;i<k;i++)
+    {
+        b[i].p = i;
+    }
+    sortarrival(b,k);
+    time=b[0].arr;
+    
+    printf("Gantt Chart:\n");
+    printf("%d",time);
+    for(i=0;i<k;i++)
+    {
+        time=time+b[i].brt;
+        printf(" -> [P%d] <- %d",b[i].p,time);
+    }
+}
 
