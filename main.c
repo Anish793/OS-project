@@ -120,3 +120,81 @@ void fcfs(struct scheduling b[],int k)
     }
 }
 
+
+void roundrobin(struct scheduling a[],int pro){
+    int i,j,time,remain,flag=0,ts=4;
+    
+    
+    remain=pro;
+    for(i=0;i<pro;i++)
+    {
+        a[i].p = i;
+        a[i].rnt = a[i].brt;
+    }
+    sortarrival(a,pro);
+    printf("\n********************************************\n");
+    printf("           Round Robin Algorithm         ");
+    printf("\n********************************************\n\n");
+    printf("Gantt Chart:\n\n");
+    time=a[0].arr;
+    printf("%d",time);
+    for(time=a[0].arr,i=0;remain!=0;)
+    {
+        if(a[i].rnt<=ts && a[i].rnt>0)
+        {
+            time = time + a[i].rnt;
+            printf(" -> [P%d] <- %d",a[i].p,time);
+            a[i].rnt=0;
+            flag=1;
+        }
+        else if(a[i].rnt > 0)
+        {
+            a[i].rnt = a[i].rnt - ts;
+            time = time + ts;
+            printf(" -> [P%d] <- %d",a[i].p,time);
+        }
+        if(a[i].rnt==0 && flag==1)
+        {
+            remain--;
+            flag=0;
+        }
+        if(i==pro-1)
+            i=0;
+        else if(a[i+1].arr <= time)
+            i++;
+        else
+            i=0;
+    }
+}
+int main()
+{
+    int n,i;
+    struct scheduling x[100],y[100];
+    printf("Enter total number of process:");
+    scanf("%d",&n);
+    printf("\nEnter Arrival Time,Burst Time and Priority of the processes\n");
+    for(i=0;i<n;i++)
+    {
+        printf("\nP[%d]\n",i);
+        printf("Arrival Time:");
+        scanf("%d",&x[i].arr);
+        printf("Burst Time:");
+        scanf("%d",&x[i].brt);
+        printf("Priority:");
+        scanf("%d",&x[i].pr);
+        
+        
+    }
+    
+    printf("Highest prioirty queue-(0-3)\n");
+    printf("Medium proiority queue-(4-6)\n");
+    printf("Lowest priority queue-(7-9)\n\n");
+    printf("Processes assigned to different queues are:\n\n");
+    for(i=0;i<n;i++)
+    {
+        if(x[i].pr==0 || x[i].pr==1 || x[i].pr==2 || x[i].pr==3)
+        {
+            printf("Queue 1 has process- P[%d]\n",i);
+        }
+    }
+
