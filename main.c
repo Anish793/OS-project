@@ -197,4 +197,29 @@ int main()
             printf("Queue 1 has process- P[%d]\n",i);
         }
     }
-
+    for(i=0;i<n;i++)
+    {
+        if(x[i].pr==4 || x[i].pr==5 || x[i].pr==6)
+        {
+            printf("Queue 2 has process- P[%d]\n",i);
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        if(x[i].pr==7 || x[i].pr==8 || x[i].pr==9)
+        {
+            printf("Queue 3 has process- P[%d]\n",i);
+        }
+    }
+    //roundrobin(x,n);
+    //priorityy(x,n);
+    
+    roundrobin(x,n);
+    sleep(10);
+    
+    priorityy(x,n);
+    sleep(10);
+    
+    fcfs(x,n);
+    return(0);
+}
